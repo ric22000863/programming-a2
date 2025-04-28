@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HappyHomesProgram
 {
-    // Represents a property that is for sale
+    // Class to represent a property that is for sale
     class Property
     {
         public int Id { get; set; }
