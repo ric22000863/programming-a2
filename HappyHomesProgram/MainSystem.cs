@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HappyHomesProgram
 {
-    internal class MainSystem
+    class MainSystem
     {
+
     }
 }

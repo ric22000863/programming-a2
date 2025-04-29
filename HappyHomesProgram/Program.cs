@@ -1,6 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 //
+using HappyHomesProgram;
+
+List<Property> properties = new List<Property>();
+List<Customer> customers = new List<Customer>();
+List<Staff> staffMembers = new List<Staff>();
+List<Viewing> viewings = new List<Viewing>();
+int nextPropertyId = 1;
+int nextCustomerId = 1;
+int nextStaffId = 1;
+int nextViewingId = 1;
+
+
 Console.WriteLine("Welcome to HappyHomes Property Viewing System!");
 Console.WriteLine("Please select an option:");
 Console.WriteLine("1. Add a Customer");
@@ -23,6 +35,7 @@ switch (choice)
 
     case 2:
         // Call add property method
+        AddProperty();
         break;
 
     case 3:
@@ -52,4 +65,17 @@ switch (choice)
     default:
         Console.WriteLine("Invalid option. Please try again.");
         break;
+}
+
+void AddProperty()
+{
+    Console.Write("Enter property address: ");
+    string address = Console.ReadLine();
+    Console.Write("Enter property type (Detached, Flat, etc.): ");
+    string type = Console.ReadLine();
+
+    Property property = new Property(nextPropertyId++, address, type);
+    properties.Add(property);
+
+    Console.WriteLine($"Property added successfully! \n Property ID: {property.Id}");
 }
