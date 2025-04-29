@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace HappyHomesProgram
 {
-    internal class Customer
+    // Class to represent a customer booking a viewing
+    class Customer
     {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public string CurrentAddress { get; set; }
+        public string Telephone { get; set; }
+        public int MissedViewings { get; set; } = 0;
+        public bool IsBanned { get; set; } = false;
+
+        public Customer(int id, string fullName, string email, string currentAddress, string telephone)
+        {
+            Id = id;
+            FullName = fullName;
+            Email = email;
+            CurrentAddress = currentAddress;
+            Telephone = telephone;
+        }
     }
 }
