@@ -41,6 +41,7 @@ switch (choice)
 
     case 3:
         // Call add staff method
+        AddStaff();
         break;
 
     case 4:
@@ -152,4 +153,33 @@ void AddStaff()
     Staff staff = new Staff(nextStaffId++, name);
     staffMembers.Add(staff);
     Console.WriteLine($"Staff member added successfully. \nStaff ID is: {staff.Id}");
+}
+
+// Method to update viewing status
+void UpdateViewingStatus()
+{
+    // User enters the viewing ID to update
+    Console.Write("Enter viewing ID: ");
+    int viewingId = Convert.ToInt32(Console.ReadLine());
+    Viewing viewing = viewings.FirstOrDefault(v => v.Id == viewingId);
+    if (viewing == null)
+    {
+        // If the viewing isn't found, display message
+        Console.WriteLine("Viewing not found.");
+        return;
+    }
+
+    // User enters the new status for the viewing
+    Console.Write("Enter new status: ");
+    string status = Console.ReadLine();
+    viewing.Status = status;
+
+    // If the status is 'Missed', increment the customer's MissedViewings count
+    if (status.Equals("Missed", StringComparison.OrdinalIgnoreCase))
+    {
+        viewing.Customer.MissedViewings += 1;
+        Console.WriteLine("Customer's missed viewings count has been updated.");
+    }
+
+    Console.WriteLine($"Viewing status updated successfully. \nNew status is: {viewing.Status}");
 }
