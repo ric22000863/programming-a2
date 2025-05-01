@@ -126,6 +126,12 @@ void AddBooking()
         Console.WriteLine("Property not found.");
         return;
     }
+    // Check if customer has reached the missed viewings limit
+    if (customer.MissedViewings >= 3)
+    {
+        Console.WriteLine("This customer has missed 3 or more viewings and cannot book another one.");
+        return;
+    }
     // User enters the staff ID for the booking
     Console.Write("Enter staff ID: ");
     int staffId = Convert.ToInt32(Console.ReadLine());
@@ -142,6 +148,13 @@ void AddBooking()
     Viewing viewing = new Viewing(nextViewingId++, customer, property, staff, dateTime);
     viewings.Add(viewing);
     Console.WriteLine($"Viewing booked successfully. \nViewing ID is: {viewing.Id}");
+    // Check if staff is already booked at the same time
+    bool isStaffBusy = viewings.Any(v => v.Staff.Id == staffId && v.DateTime == dateTime);
+    if (isStaffBusy)
+    {
+        Console.WriteLine("The selected staff member is already booked for a viewing at that time.");
+        return;
+    }
 }
 
 // Method to add staff member
