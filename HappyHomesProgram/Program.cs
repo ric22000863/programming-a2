@@ -51,6 +51,7 @@ switch (choice)
     
     case 5:
         // Call update viewing status method
+        UpdateViewingStatus();
         break;
     
     case 6:
