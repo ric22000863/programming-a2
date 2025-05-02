@@ -103,7 +103,7 @@ void AddBooking()
 
     // Try to find an existing customer
     Customer customer = customers.FirstOrDefault(c =>
-        c.Email.ToLower() == email || c.Telephone == phone);
+        c.Email.ToLower() == email && c.Telephone == phone);
 
     if (customer != null)
     {
@@ -111,7 +111,7 @@ void AddBooking()
     }
     else
     {
-        Console.Write("Full Name: ");
+        Console.Write("Existing Customer Not Found. Enter Full Name: ");
         string name = Console.ReadLine();
         Console.Write("Current Address: ");
         string address = Console.ReadLine();
@@ -119,7 +119,7 @@ void AddBooking()
         customer = new Customer(nextCustomerId++, name, email, address, phone);
         customers.Add(customer);
 
-        Console.WriteLine($"New customer added. ID: {customer.Id}");
+        Console.WriteLine($"New customer added. Customer ID: {customer.Id}");
     }
 
     // Check if the customer is banned
@@ -151,7 +151,7 @@ void AddBooking()
         return;
     }
 
-    Console.WriteLine("\nAvailable Staff:");
+    Console.WriteLine("Staff:");
     foreach (var s in staffMembers)
         Console.WriteLine($"ID: {s.Id}, Name: {s.Name}");
 
