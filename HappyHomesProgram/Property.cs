@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HappyHomesProgram
 {
     // Class to represent a property that is for sale
-    class Property
+    public class Property
     {
         public int Id { get; set; }
         public string Address { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HappyHomesProgram
 {
     // Class to represent a staff member
-    class Staff
+    public class Staff
     {
         public int Id { get; set; }
         public string Name { get; set; }

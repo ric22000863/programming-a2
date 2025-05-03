@@ -8,7 +8,7 @@ using HappyHomesProgram;
 namespace HappyHomesProgram
 {
     // Class that would show appointments for viewings
-    class Viewing
+    public class Viewing
     {
         public int Id { get; set; }
         public Customer Customer { get; set; }

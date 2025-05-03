@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HappyHomesProgram
 {
     // Class to represent a customer booking a viewing
-    class Customer
+    public class Customer
     {
         public int Id { get; set; }
         public string FullName { get; set; }

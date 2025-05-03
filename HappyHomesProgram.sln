@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyHomesProgram", "HappyHomesProgram\HappyHomesProgram.csproj", "{020A287B-0E9C-42CB-A91B-F7F0AA4F4CD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyHomesTests", "CustomerTests\HappyHomesTests\HappyHomesTests.csproj", "{C25B3CA9-B44C-4564-8F75-E40AF5BFC696}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{020A287B-0E9C-42CB-A91B-F7F0AA4F4CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{020A287B-0E9C-42CB-A91B-F7F0AA4F4CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{020A287B-0E9C-42CB-A91B-F7F0AA4F4CD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C25B3CA9-B44C-4564-8F75-E40AF5BFC696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C25B3CA9-B44C-4564-8F75-E40AF5BFC696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C25B3CA9-B44C-4564-8F75-E40AF5BFC696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C25B3CA9-B44C-4564-8F75-E40AF5BFC696}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
