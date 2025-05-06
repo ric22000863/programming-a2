@@ -26,41 +26,41 @@ while (running)
     Console.WriteLine("7. Exit");
     Console.WriteLine("Enter your choice: ");
 
-    int choice = Convert.ToInt32(Console.ReadLine());
+    string choice = Console.ReadLine();
 
     switch (choice)
     {
-        case 1:
+        case "1":
             // Call book viewing method
             AddBooking();
             break;
 
-        case 2:
+        case "2":
             // Call add property method
             Property.AddProperty(properties, ref nextPropertyId);
             break;
 
-        case 3:
+        case "3":
             // Call add staff method
             Staff.AddStaff(staffMembers, ref nextStaffId);
             break;
 
-        case 4:
+        case "4":
             // Call update viewing status method
             Viewing.UpdateViewingStatus(viewings);
             break;
 
-        case 5:
+        case "5":
             // Call filter customer method
             Customer.FilterCustomerByName(customers);
             break;
 
-        case 6:
+        case "6":
             // Call filter property method
             Property.FilterPropertyByName(properties);
             break;
 
-        case 7:
+        case "7":
             // Exit program
             Console.WriteLine("Exiting the program.");
             running = false;
