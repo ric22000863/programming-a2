@@ -25,5 +25,25 @@ namespace HappyHomesProgram
             CurrentAddress = currentAddress;
             Telephone = telephone;
         }
+
+        // Method to filter customers by name
+        public static void FilterCustomerByName(List<Customer> customers)
+        {
+            // User enters the name to search for
+            Console.Write("Enter customer name: ");
+            string name = Console.ReadLine();
+            List<Customer> foundCustomers = customers.Where(c => c.FullName.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (foundCustomers.Count == 0)
+            {
+                // If no customers are found, display message
+                Console.WriteLine("No customers found with that name.");
+                return;
+            }
+            foreach (var customer in foundCustomers)
+            {
+                // Outputs the customers details
+                Console.WriteLine($"Customer ID: {customer.Id}, Name: {customer.FullName}, Email: {customer.Email}, Banned: {customer.IsBanned}");
+            }
+        }
     }
 }

@@ -30,5 +30,16 @@ namespace HappyHomesProgram
         {
             UnavailableTimes.Add(dateTime);
         }
+
+        // Method to add staff member
+        public static void AddStaff(List<Staff> staffMembers, ref int nextStaffId)
+        {
+            // User enters the staff member details
+            Console.Write("Enter staff name: ");
+            string name = Console.ReadLine();
+            Staff staff = new Staff(nextStaffId++, name);
+            staffMembers.Add(staff);
+            Console.WriteLine($"Staff member added successfully. \nStaff ID is: {staff.Id}");
+        }
     }
 }

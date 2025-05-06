@@ -1,7 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-//
-using System.Transactions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using HappyHomesProgram;
 
 List<Property> properties = new List<Property>();
@@ -16,8 +15,6 @@ int nextViewingId = 1;
 bool running = true;
 while (running)
 {
-
-
     Console.WriteLine("Welcome to HappyHomes Property Viewing System");
     Console.WriteLine("Please select an option:");
     Console.WriteLine("1. Book a Viewing");
@@ -40,27 +37,27 @@ while (running)
 
         case 2:
             // Call add property method
-            AddProperty();
+            Property.AddProperty(properties, ref nextPropertyId);
             break;
 
         case 3:
             // Call add staff method
-            AddStaff();
+            Staff.AddStaff(staffMembers, ref nextStaffId);
             break;
 
         case 4:
             // Call update viewing status method
-            UpdateViewingStatus();
+            Viewing.UpdateViewingStatus(viewings);
             break;
 
         case 5:
             // Call filter customer method
-            FilterCustomerByName();
+            Customer.FilterCustomerByName(customers);
             break;
 
         case 6:
             // Call filter property method
-            FilterPropertyByName();
+            Property.FilterPropertyByName(properties);
             break;
 
         case 7:
@@ -73,22 +70,6 @@ while (running)
             Console.WriteLine("Invalid option. Please try again.");
             break;
     }
-
-    // Method to store property details
-    void AddProperty()
-    {
-        // User enters the details of the property
-        Console.Write("Enter property address: ");
-        string address = Console.ReadLine();
-        Console.Write("Enter property type (Detached, Flat, etc.): ");
-        string type = Console.ReadLine();
-
-        Property property = new Property(nextPropertyId++, address, type);
-        properties.Add(property);
-
-        Console.WriteLine($"Property added successfully. \nProperty ID is: {property.Id}");
-    }
-
 }
 
 // Method to book a viewing and store customer details
@@ -176,7 +157,7 @@ void AddBooking()
         return;
     }
 
-    // Createa a new viewing
+    // Create a new viewing
     Viewing viewing = new Viewing(nextViewingId++, customer, property, staff, dateTime);
     viewings.Add(viewing);
 
@@ -184,87 +165,4 @@ void AddBooking()
     staff.MarkUnavailable(dateTime);
 
     Console.WriteLine($"Viewing booked successfully. Viewing ID: {viewing.Id}");
-}
-
-
-// Method to add staff member
-void AddStaff()
-{
-    // User enters the staff member details
-    Console.Write("Enter staff name: ");
-    string name = Console.ReadLine();
-    Staff staff = new Staff(nextStaffId++, name);
-    staffMembers.Add(staff);
-    Console.WriteLine($"Staff member added successfully. \nStaff ID is: {staff.Id}");
-}
-
-// Method to update viewing status
-void UpdateViewingStatus()
-{
-    // User enters the viewing ID to update
-    Console.Write("Enter viewing ID: ");
-    int viewingId = Convert.ToInt32(Console.ReadLine());
-    Viewing viewing = viewings.FirstOrDefault(v => v.Id == viewingId);
-    if (viewing == null)
-    {
-        // If the viewing isn't found, display message
-        Console.WriteLine("Viewing not found.");
-        return;
-    }
-
-    // User enters the new status for the viewing
-    Console.Write("Enter new status: ");
-    string status = Console.ReadLine();
-    viewing.Status = status;
-
-    // If the status is 'Missed', increment the customer's MissedViewings count
-    if (status.Equals("Missed", StringComparison.OrdinalIgnoreCase))
-    {
-        viewing.Customer.MissedViewings += 1;
-        Console.WriteLine("Customer's missed viewings count has been updated.");
-    }
-
-    Console.WriteLine($"Viewing status updated successfully. \nNew status is: {viewing.Status}");
-}
-
-// Method to filter customers by name
-void FilterCustomerByName()
-{
-    // User enters the name to search for
-    Console.Write("Enter customer name: ");
-    string name = Console.ReadLine();
-    List<Customer> foundCustomers = customers.Where(c => c.FullName.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
-    if (foundCustomers.Count == 0)
-    {
-
-        // If no customers are found, display message
-        Console.WriteLine("No customers found with that name.");
-        return;
-    }
-    foreach (var customer in foundCustomers)
-    {
-        // Outputs the customers details
-        Console.WriteLine($"Customer ID: {customer.Id}, Name: {customer.FullName}, Email: {customer.Email}, Banned: {customer.IsBanned}");
-    }
-
-}
-
-// Method to filter properties by name
-void FilterPropertyByName()
-{
-    // User enters the address to search for
-    Console.Write("Enter property address: ");
-    string address = Console.ReadLine();
-    List<Property> foundProperties = properties.Where(p => p.Address.Contains(address, StringComparison.OrdinalIgnoreCase)).ToList();
-    if (foundProperties.Count == 0)
-    {
-        // If no properties are found, display message
-        Console.WriteLine("No properties found with that address.");
-        return;
-    }
-    foreach (var property in foundProperties)
-    {
-        // Outputs the properties details
-        Console.WriteLine($"Property ID: {property.Id}, Address: {property.Address}, Type: {property.Type}");
-    }
 }
